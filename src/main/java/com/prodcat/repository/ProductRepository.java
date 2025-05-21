@@ -1,6 +1,6 @@
-package com.prodcat.prodcat.repository;
+package com.prodcat.repository;
 
-import com.prodcat.prodcat.model.Product;
+import com.prodcat.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

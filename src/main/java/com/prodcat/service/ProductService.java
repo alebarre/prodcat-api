@@ -1,15 +1,19 @@
-package com.prodcat.prodcat.service;
+package com.prodcat.service;
 
-import com.prodcat.prodcat.DTO.ProductDTO;
-import com.prodcat.prodcat.Mapper.ProductMapper;
-import com.prodcat.prodcat.model.Category;
-import com.prodcat.prodcat.model.Product;
-import com.prodcat.prodcat.repository.CategoryRepository;
-import com.prodcat.prodcat.repository.ProductRepository;
+import com.prodcat.DTO.ProductDTO;
+import com.prodcat.Mapper.ProductMapper;
+import com.prodcat.model.Category;
+import com.prodcat.model.Product;
+import com.prodcat.repository.CategoryRepository;
+import com.prodcat.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -35,18 +39,40 @@ public class ProductService {
     }
 
     public ProductDTO save(ProductDTO dto) {
+
+        if (dto.getId() != null) {
+            Optional<Product> productExist = productRepo.findById(dto.getId());
+            if (productExist.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found 🙁");
+            } else {
+                return getProductDTO(dto);
+            }
+
+        }
+        return getProductDTO(dto);
+    }
+
+    private ProductDTO getProductDTO(ProductDTO dto) {
         Product entity = productMapper.toEntity(dto);
+
         if (dto.getCategoryId() != null) {
+
             Category cat = categoryRepo.findById(dto.getCategoryId())
                     .orElseThrow(() -> new RuntimeException("Category not found"));
+
             entity.setCategory(cat);
         }
+
         Product saved = productRepo.save(entity);
         return productMapper.toDTO(saved);
     }
 
     public void delete(Long id) {
-        productRepo.deleteById(id);
+        if (id == null || productRepo.findById(id).isEmpty()) {
+            throw new RuntimeException("Product not found");
+        } else {
+            productRepo.deleteById(id);
+        }
     }
 
     public ProductDTO get(Long id) {

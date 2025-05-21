@@ -1,4 +1,4 @@
-package com.prodcat.prodcat;
+package com.prodcat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

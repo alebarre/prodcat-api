@@ -1,10 +1,10 @@
-package com.prodcat.prodcat.service;
+package com.prodcat.service;
 
-import com.prodcat.prodcat.DTO.CategoryDTO;
-import com.prodcat.prodcat.Mapper.CategoryMapper;
-import com.prodcat.prodcat.model.Category;
-import com.prodcat.prodcat.repository.CategoryRepository;
-import com.prodcat.prodcat.repository.ProductRepository;
+import com.prodcat.DTO.CategoryDTO;
+import com.prodcat.Mapper.CategoryMapper;
+import com.prodcat.model.Category;
+import com.prodcat.repository.CategoryRepository;
+import com.prodcat.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

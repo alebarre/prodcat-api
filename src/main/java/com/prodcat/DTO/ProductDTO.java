@@ -1,4 +1,4 @@
-package com.prodcat.prodcat.DTO;
+package com.prodcat.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

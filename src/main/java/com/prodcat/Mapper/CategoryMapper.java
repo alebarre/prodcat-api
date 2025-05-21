@@ -1,8 +1,8 @@
-package com.prodcat.prodcat.Mapper;
+package com.prodcat.Mapper;
 
 
-import com.prodcat.prodcat.DTO.CategoryDTO;
-import com.prodcat.prodcat.model.Category;
+import com.prodcat.DTO.CategoryDTO;
+import com.prodcat.model.Category;
 import org.springframework.stereotype.Component;
 
 @Component

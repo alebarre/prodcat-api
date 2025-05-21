@@ -1,4 +1,4 @@
-package com.prodcat.prodcat.model;
+package com.prodcat.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
