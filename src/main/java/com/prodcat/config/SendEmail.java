@@ -29,7 +29,7 @@ public class SendEmail {
         MimeMessageHelper helper = new MimeMessageHelper(mimeMsg, "UTF-8");
         helper.setFrom(fromAddress);
         helper.setTo(toEmailSend);
-        helper.setSubject("BUILD & RUN | Redefinição de Senha");
+        helper.setSubject("PRODUCT & CATEGORIES API | Password change request");
         helper.setText(mesage, true);
 
         sender.send(mimeMsg);
