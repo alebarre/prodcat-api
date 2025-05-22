@@ -50,13 +50,14 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/esqueci-a-senha/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/validate").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .anyRequest().authenticated())
-                .csrf(csrf -> csrf.disable()) // Desabilita o CSRF, pois não é necessário para APIs REST, em ambiente de produção deve ser habilitado
-                .cors(cors -> cors.disable()) // Desabilita o CORS apenas localmente
+                .csrf(csrf -> csrf.disable())
+                .cors(Customizer.withDefaults())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())) // Configura o servidor de recursos OAuth2 para usar JWT
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // Define a política de sessão como sem estado (stateless), ou seja, não armazena informações de sessão no servidor
 

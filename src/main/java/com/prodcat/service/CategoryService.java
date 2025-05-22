@@ -28,6 +28,11 @@ public class CategoryService {
 
     }
 
+    public List<String> listParents() {
+        return categoryRepo.findTopLevelCategoryNames();
+
+    }
+
     public CategoryDTO save(CategoryDTO dto) {
         Category entity = mapper.toEntity(dto);
         if (dto.getId() != null) {

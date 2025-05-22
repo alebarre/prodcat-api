@@ -31,6 +31,11 @@ public class CategoryController {
         return categoryService.list();
     }
 
+    @GetMapping("/parent")
+    public List<String> listParents() {
+        return categoryService.listParents();
+    }
+
     @GetMapping("/{id}")
     public CategoryDTO get(@PathVariable Long id) {
         return categoryService.get(id);
